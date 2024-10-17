@@ -1,46 +1,32 @@
 # design-patterns
- ## Abstract Factory
- - User below url to get Furniture of type coffee and furnitureName Modern
-   
-   http://localhost:8080/furniture?type=coffee&furnitureName=modern
-- User below url to get Furniture of type coffee and furnitureName Victorian
-  
-   http://localhost:8080/furniture?type=coffee&furnitureName=Victorian
-- User below url to get Furniture of type coffee and furnitureName ArtDeco
-  
-   http://localhost:8080/furniture?type=coffee&furnitureName=artDeco
+ ### 1. Abstract Factory Design pattern
+ 
+Abstract Factory is a creational design pattern that lets you produce families of related objects without specifying their concrete classes.
+<details>
+  <summary>Click here to see all endpoints to Test API </summary>
 
-- User below url to get Furniture of type Sofa and furnitureName Modern
-  
-   http://localhost:8080/furniture?type=sofa&furnitureName=modern
-- User below url to get Furniture of type sofa and furnitureName Victorian
-  
-   http://localhost:8080/furniture?type=sofa&furnitureName=Victorian
-- User below url to get Furniture of type sofa and furnitureName ArtDeco
-  
-   http://localhost:8080/furniture?type=sofa&furnitureName=artDeco
+  ### Use below url to get Furniture Object based on type and furnitureName
+  1. http://localhost:8080/furniture?type=coffee&furnitureName=modern
+  2. http://localhost:8080/furniture?type=coffee&furnitureName=Victorian
+  3. http://localhost:8080/furniture?type=coffee&furnitureName=artDeco
+  4. http://localhost:8080/furniture?type=sofa&furnitureName=modern
+  5. http://localhost:8080/furniture?type=sofa&furnitureName=Victorian
+  6. http://localhost:8080/furniture?type=sofa&furnitureName=artDeco
+  7. http://localhost:8080/furniture?type=chair&furnitureName=modern
+  8. http://localhost:8080/furniture?type=chair&furnitureName=Victorian
+  9. http://localhost:8080/furniture?type=chair&furnitureName=artDeco  
+</details>
 
-- User below url to get Furniture of type chair and furnitureName Modern
-  
-   http://localhost:8080/furniture?type=chair&furnitureName=modern
-- User below url to get Furniture of type chair and furnitureName Victorian
-  
-   http://localhost:8080/furniture?type=chair&furnitureName=Victorian
-- User below url to get Furniture of type chair and furnitureName ArtDeco
-  
-   http://localhost:8080/furniture?type=chair&furnitureName=artDeco
+ ### 2. Factory Design pattern
+ Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
+<details>
+  <summary>Click here to see all endpoints to Test API </summary>
 
-   ## Factory Design
- - User below url to get Payment with payment type netbanking
+  ### Use below url to get Furniture Object based on type and furnitureName
+  1. http://localhost:8080/payment?paymentType=netbanking
+  2. http://localhost:8080/payment?paymentType=upi
+  3. http://localhost:8080/payment?paymentType=debit
+  4. http://localhost:8080/payment?paymentType=credit
+</details>
+ 
    
-   http://localhost:8080/payment?paymentType=netbanking
-- User below url to get Payment with payment type UPI
-   
-   http://localhost:8080/payment?paymentType=upi
-
-  - User below url to get Payment with payment type Debit card
-   
-   http://localhost:8080/payment?paymentType=debit
-  - User below url to get Payment with payment type Credit card 
-   
-   http://localhost:8080/payment?paymentType=credit
