@@ -1,4 +1,4 @@
-package com.learnwithak.design.patterns;
+package com.learnwithak.design.patterns.enums;
 
 public enum FurnitureType {
     CHAIR,
