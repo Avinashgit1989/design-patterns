@@ -17,7 +17,7 @@ public class PaymentFactoryImpl implements PaymentFactory {
 
         }
         switch (paymentType.toLowerCase()) {
-            case "creadit":
+            case "credit":
                 return new CreditCard();
             case "debit":
                 return new DebitCardPayment();
