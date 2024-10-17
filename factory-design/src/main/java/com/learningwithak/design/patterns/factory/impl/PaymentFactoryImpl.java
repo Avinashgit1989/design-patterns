@@ -1,6 +1,5 @@
 package com.learningwithak.design.patterns.factory.impl;
 
-import com.learningwithak.design.patterns.constant.PaymentConstant;
 import com.learningwithak.design.patterns.factory.PaymentFactory;
 import com.learningwithak.design.patterns.payment.Payment;
 import com.learningwithak.design.patterns.payment.impl.creadit.CreditCard;
