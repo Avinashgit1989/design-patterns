@@ -1,0 +1,19 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: cab-driver-service
+  #mysql database connection
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cab_driver?createDatabaseIfNotExist=true
+    username: root
+    password: root
+  #hibernate/JPA
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
