@@ -1,4 +1,4 @@
-package com.learnwitak.cab;
+package com.learnwitak.driver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

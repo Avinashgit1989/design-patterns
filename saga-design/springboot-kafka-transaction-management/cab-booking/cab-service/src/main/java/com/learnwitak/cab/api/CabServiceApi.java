@@ -1,7 +1,7 @@
 package com.learnwitak.cab.api;
 
-import com.learnwitak.cab.entity.Cab;
 import com.learnwitak.cab.service.CabService;
+import com.learnwitak.cab.entity.Cab;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

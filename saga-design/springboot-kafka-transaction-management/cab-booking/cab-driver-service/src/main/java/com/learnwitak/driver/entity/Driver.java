@@ -1,6 +1,6 @@
-package com.learnwitak.cab.entity;
+package com.learnwitak.driver.entity;
 
-import com.learnwitak.cab.emuns.CommonStatusEnum;
+import com.learnwitak.common.emuns.CommonStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

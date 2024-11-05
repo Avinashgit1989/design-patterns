@@ -1,14 +1,12 @@
 package com.learnwitak.cab.entity;
 
-import com.learnwitak.cab.emuns.CommonStatusEnum;
-import com.learnwitak.cab.types.CabTypes;
+import com.learnwitak.common.emuns.CommonStatusEnum;
+import com.learnwitak.common.cab.types.CabTypes;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.aot.generate.GeneratedTypeReference;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.util.UUID;
 
@@ -21,8 +19,10 @@ import java.util.UUID;
 public class Cab {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "driverId")
+    @Column(name = "cabId")
     private UUID cabId;
+    @Column(name = "driverId")
+    private UUID driverId;
     @Column(name = "registration_number")
     private String registrationNumber;
     @Enumerated(EnumType.STRING)

@@ -1,8 +1,8 @@
 package com.learnwitak.cab.service.impl;
 
-import com.learnwitak.cab.api.CabServiceApi;
-import com.learnwitak.cab.entity.Cab;
 import com.learnwitak.cab.repository.CabRepository;
+import com.learnwitak.common.emuns.CommonStatusEnum;
+import com.learnwitak.cab.entity.Cab;
 import com.learnwitak.cab.service.CabService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -43,5 +43,10 @@ public class CabServiceImpl implements CabService {
     public void deleteCabById(UUID cabId) {
         LOGGER.info("Delete Cab By Id Service calling..");
          cabRepository.deleteById(cabId);
+    }
+
+    @Override
+    public boolean verifyCabExistingWithRegistrationNumberAndStatus(String registrationNumber, CommonStatusEnum success) {
+        return cabRepository.existsByRegistrationNumberAndCabStatus(registrationNumber, success);
     }
 }

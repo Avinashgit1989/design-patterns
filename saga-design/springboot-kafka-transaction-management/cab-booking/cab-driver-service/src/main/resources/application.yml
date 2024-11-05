@@ -17,3 +17,13 @@ spring:
     hibernate:
       ddl-auto: update
 
+# Kafka configuration
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    consumer:
+      group-id: driver-group
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+

@@ -1,5 +1,6 @@
 package com.learnwitak.cab.service;
 
+import com.learnwitak.common.emuns.CommonStatusEnum;
 import com.learnwitak.cab.entity.Cab;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface CabService {
     Cab addNewCab(Cab cab);
 
     void deleteCabById(UUID cabId);
+
+    boolean verifyCabExistingWithRegistrationNumberAndStatus(String registrationNumber, CommonStatusEnum success);
 }

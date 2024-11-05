@@ -1,8 +1,8 @@
-package com.learnwitak.cab.api;
+package com.learnwitak.driver.api;
 
-import com.learnwitak.cab.entity.Driver;
-import com.learnwitak.cab.service.DriverService;
-import com.learnwitak.cab.service.impl.DriverServiceImpl;
+import com.learnwitak.common.driver.dto.DriverDto;
+import com.learnwitak.driver.entity.Driver;
+import com.learnwitak.driver.service.DriverService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +22,10 @@ public class DriverServiceAPI {
     public final static Logger LOGGER = LoggerFactory.getLogger(DriverServiceAPI.class);
     @Autowired
     private final DriverService driverService;
-@PostMapping
-    public ResponseEntity<Driver> addNewDriver(@RequestBody Driver driver){
+    @PostMapping
+    public ResponseEntity<String> addNewDriver(@RequestBody DriverDto driver){
     LOGGER.info("Driver Service API to create New Driver  is called....");
-        return new ResponseEntity<Driver>(driverService.addNewDriver(driver), HttpStatus.CREATED);
+        return new ResponseEntity<String>(driverService.addNewDriver(driver), HttpStatus.CREATED);
     }
 
     @GetMapping
