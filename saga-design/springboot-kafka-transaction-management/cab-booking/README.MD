@@ -30,7 +30,7 @@ This service contains all API related to add new cab, get all cab, get Cab by Id
 
  ##### 1. Download the kafka and extract to the local system. Download as binary
 
-    [URL To Download KAFKA](https://kafka.apache.org/downloads)
+[URL To Download KAFKA](https://kafka.apache.org/downloads)
 
 ##### 2. Modify the zookeeper.properties to add log on local directory.
 
@@ -52,10 +52,9 @@ This service contains all API related to add new cab, get all cab, get Cab by Id
 
 ##### 6. Start the cab-driver-service and use below swagger URl to assess EndPoints.
 
-        [Cab-Driver-Service :: Swagger URL](http://localhost:8081/swagger-ui/index.html)
+[Cab-Driver-Service :: Swagger URL](http://localhost:8081/swagger-ui/index.html)
 
 ##### 7. Start the cab-service
 
-       [Cab-service :: Swagger URL](http://localhost:8082/swagger-ui/index.html)
+[Cab-service :: Swagger URL](http://localhost:8082/swagger-ui/index.html)
 
-#####
