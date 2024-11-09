@@ -57,7 +57,7 @@
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-spring-boot-starter</artifactId>
-			<version>4.5.4</version>
+			<version>4.9.3</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
@@ -68,7 +68,7 @@
 		<dependency>
 			<groupId>com.learnwithak.common.service</groupId>
 			<artifactId>CommonService</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

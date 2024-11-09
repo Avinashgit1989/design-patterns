@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class OrderModel {
     private String productId;
     private String userId;

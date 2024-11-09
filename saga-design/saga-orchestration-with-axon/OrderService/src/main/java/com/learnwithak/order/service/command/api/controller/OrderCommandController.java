@@ -2,8 +2,8 @@ package com.learnwithak.order.service.command.api.controller;
 
 import com.learnwithak.order.service.command.api.command.CreateOrderCommand;
 import com.learnwithak.order.service.command.api.model.OrderModel;
-import lombok.AllArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,9 +15,13 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/orders")
-@AllArgsConstructor
 public class OrderCommandController {
-    private CommandGateway commandGateway;
+@Autowired
+     private final CommandGateway commandGateway;
+
+    public OrderCommandController(CommandGateway commandGateway) {
+        this.commandGateway = commandGateway;
+    }
 
     @PostMapping
     public ResponseEntity<String> createOrder(@RequestBody OrderModel orderModel){

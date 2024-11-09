@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cab-booking.iml" filepath="$PROJECT_DIR$/cab-booking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cab-common-service/cab-common-service.iml" filepath="$PROJECT_DIR$/cab-common-service/cab-common-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cab-driver-service/cab-driver-service.iml" filepath="$PROJECT_DIR$/cab-driver-service/cab-driver-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cab-service/cab-service.iml" filepath="$PROJECT_DIR$/cab-service/cab-service.iml" />
+    </modules>
+  </component>
+</project>

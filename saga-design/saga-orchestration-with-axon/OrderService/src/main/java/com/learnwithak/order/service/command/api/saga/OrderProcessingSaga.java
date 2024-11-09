@@ -1,29 +1,40 @@
 package com.learnwithak.order.service.command.api.saga;
 
+import com.learnwithak.common.service.commads.CompleteOrderCommand;
+import com.learnwithak.common.service.commads.ShipmentOrderCommand;
 import com.learnwithak.common.service.commads.ValidatePaymentCommand;
+import com.learnwithak.common.service.events.OrderCompletedEvent;
+import com.learnwithak.common.service.events.PaymentProcessedEvent;
+import com.learnwithak.common.service.events.ShipmentProcessedEvent;
 import com.learnwithak.common.service.model.User;
 import com.learnwithak.common.service.queries.GetUserPaymentDetailsQuery;
 import com.learnwithak.order.service.command.api.events.CreateOrderEvent;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.messaging.responsetypes.ResponseType;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
+import org.axonframework.modelling.saga.EndSaga;
 import org.axonframework.modelling.saga.SagaEventHandler;
 import org.axonframework.modelling.saga.StartSaga;
 import org.axonframework.queryhandling.QueryGateway;
 import org.axonframework.spring.stereotype.Saga;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;
 
 @Saga
-@AllArgsConstructor
+@NoArgsConstructor
 public class OrderProcessingSaga {
     private static final  Logger logger = LoggerFactory.getLogger(OrderProcessingSaga.class);
+    @Autowired
+    private transient CommandGateway commandGateway;
 
-    private CommandGateway commandGateway;
-    private QueryGateway queryGateway;
+    @Autowired
+    private transient QueryGateway queryGateway;
+
     @StartSaga
     @SagaEventHandler(associationProperty ="orderId")
     public void handle(CreateOrderEvent createOrderEvent){
@@ -31,7 +42,7 @@ public class OrderProcessingSaga {
         GetUserPaymentDetailsQuery getUserPaymentDetailsQuery =
                 new GetUserPaymentDetailsQuery(createOrderEvent.getUserId());
         User user = null;
-        //it returns complitable
+        //it returns completable
 
         try {
             //calling the queryGateway to get User and payment details
@@ -47,5 +58,60 @@ public class OrderProcessingSaga {
                 .cardDetails(user.getCardDetails()).build();
         //Now sending this command CommandGateway
         commandGateway.sendAndWait(validatePaymentCommand);
+    }
+    //@StartSaga
+    @SagaEventHandler(associationProperty ="orderId")
+    public void handle(PaymentProcessedEvent paymentProcessedEvent){
+        logger.info("PaymentProcessedEvent in Saga for orderId : {}"+
+                paymentProcessedEvent.getOrderId());
+        try {
+            ShipmentOrderCommand shipmentOrderCommand = ShipmentOrderCommand
+                    .builder()
+                    .shipmentId(UUID.randomUUID().toString())
+                    .orderId(paymentProcessedEvent.getOrderId())
+                    .build();
+            logger.info("Command send to the command Gateway...");
+            commandGateway.sendAndWait(shipmentOrderCommand);
+        } catch (Exception exception) {
+            logger.error("Error while getting user query :: "+ exception.getMessage());
+            //start the Compensating transaction
+        }
+    }
+
+   // @StartSaga
+    @SagaEventHandler(associationProperty ="orderId")
+    public void handle(ShipmentProcessedEvent shipmentProcessedEvent){
+        logger.info("ShipmentProcessedEvent in Saga for orderId : {}"+
+                shipmentProcessedEvent.getOrderId());
+        try {
+            CompleteOrderCommand completeOrderCommand = CompleteOrderCommand
+                    .builder()
+                    .orderId(UUID.randomUUID().toString())
+                    .orderStatus("APPROVED")
+                    .build();
+            logger.info("Command send to the command Gateway...");
+            commandGateway.sendAndWait(completeOrderCommand);
+        } catch (Exception exception) {
+            logger.error("Error while getting user query :: "+ exception.getMessage());
+            //start the Compensating transaction
+        }
+    }
+
+    @SagaEventHandler(associationProperty ="orderId")
+    @EndSaga
+    public void handle(OrderCompletedEvent orderCompletedEvent ){
+        logger.info("OrderCompletedEvent in Saga for orderId : {}"+
+                orderCompletedEvent.getOrderId());
+        //Note: here we are not creating the invoice service so using the End saga here by just printing the log.
+        /*try {
+            CompleteOrderCommand completeOrderCommand = CompleteOrderCommand.builder()
+                    .orderId(UUID.randomUUID().toString())
+                    .orderStatus("APPROVED").build();
+            logger.info("Command send to the command Gateway...");
+            commandGateway.sendAndWait(completeOrderCommand);
+        } catch (Exception exception) {
+            logger.error("Error while getting user query :: "+ exception.getMessage());
+            //start the Compensating transaction
+        }*/
     }
 }

@@ -1,5 +1,7 @@
 package com.learnwithak.order.service.command.api.aggregate;
 
+import com.learnwithak.common.service.commads.CompleteOrderCommand;
+import com.learnwithak.common.service.events.OrderCompletedEvent;
 import com.learnwithak.order.service.command.api.command.CreateOrderCommand;
 import com.learnwithak.order.service.command.api.events.CreateOrderEvent;
 import org.axonframework.commandhandling.CommandHandler;
@@ -26,7 +28,7 @@ public class OrderAggregate {
         BeanUtils.copyProperties(createOrderCommand, createOrderEvent);
         AggregateLifecycle.apply(createOrderEvent);
     }
-@EventSourcingHandler
+    @EventSourcingHandler
     public void on(CreateOrderEvent createOrderEvent){
         this.addressId = createOrderEvent.getAddressId();
         this.orderStatus = createOrderEvent.getOrderStatus();
@@ -34,6 +36,21 @@ public class OrderAggregate {
         this.productId = createOrderEvent.getProductId();
         this.quantity = createOrderEvent.getQuantity();
         this.orderId = createOrderEvent.getOrderId();
+
+    }
+
+    @CommandHandler
+    public OrderAggregate(CompleteOrderCommand completeOrderCommand) {
+        //validate the command
+        //publish the order complete Event
+        OrderCompletedEvent orderCompletedEvent = OrderCompletedEvent.builder()
+                .orderId(completeOrderCommand.getOrderId())
+                .orderStatus(completeOrderCommand.getOrderStatus()).build();
+        AggregateLifecycle.apply(orderCompletedEvent);
+    }
+    @EventSourcingHandler
+    public void on(OrderCompletedEvent orderCompletedEvent){
+        this.orderStatus = orderCompletedEvent.getOrderStatus();
 
     }
 }

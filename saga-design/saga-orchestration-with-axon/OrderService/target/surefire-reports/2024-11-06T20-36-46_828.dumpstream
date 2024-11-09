@@ -1,5 +1,0 @@
-# Created at 2024-11-06T20:36:47.613
-Boot Manifest-JAR contains absolute paths in classpath 'E:\design-patterns\saga-design\saga-orchestration-with-axon\OrderService\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-
