@@ -27,11 +27,11 @@ import java.util.UUID;
 
 @Saga
 @NoArgsConstructor
+//@AllArgsConstructor
 public class OrderProcessingSaga {
     private static final  Logger logger = LoggerFactory.getLogger(OrderProcessingSaga.class);
     @Autowired
     private transient CommandGateway commandGateway;
-
     @Autowired
     private transient QueryGateway queryGateway;
 
@@ -65,6 +65,9 @@ public class OrderProcessingSaga {
         logger.info("PaymentProcessedEvent in Saga for orderId : {}"+
                 paymentProcessedEvent.getOrderId());
         try {
+            if(true)
+                throw new Exception();
+
             ShipmentOrderCommand shipmentOrderCommand = ShipmentOrderCommand
                     .builder()
                     .shipmentId(UUID.randomUUID().toString())

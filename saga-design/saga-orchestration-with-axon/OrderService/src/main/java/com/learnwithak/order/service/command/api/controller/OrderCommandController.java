@@ -16,8 +16,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api/v1/orders")
 public class OrderCommandController {
-@Autowired
-     private final CommandGateway commandGateway;
+
+    private CommandGateway commandGateway;
 
     public OrderCommandController(CommandGateway commandGateway) {
         this.commandGateway = commandGateway;

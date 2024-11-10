@@ -17,3 +17,11 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+
+  #Logging
+logging:
+  level:
+    com:
+      thoughtworksxstream: DEBUG
+    org:
+      axonframework: DEBUG
