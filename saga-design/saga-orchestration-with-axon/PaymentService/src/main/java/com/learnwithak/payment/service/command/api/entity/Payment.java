@@ -18,6 +18,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Payment {
     @Id
+   // @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String paymentId;
     private String orderId;
     private Date paymentDate;

@@ -9,10 +9,8 @@ import com.learnwithak.common.service.events.ShipmentProcessedEvent;
 import com.learnwithak.common.service.model.User;
 import com.learnwithak.common.service.queries.GetUserPaymentDetailsQuery;
 import com.learnwithak.order.service.command.api.events.CreateOrderEvent;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.messaging.responsetypes.ResponseType;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.modelling.saga.EndSaga;
 import org.axonframework.modelling.saga.SagaEventHandler;
@@ -38,7 +36,7 @@ public class OrderProcessingSaga {
     @StartSaga
     @SagaEventHandler(associationProperty ="orderId")
     public void handle(CreateOrderEvent createOrderEvent){
-    logger.info("CreateOrderEvent in Saga for orderId : {}"+ createOrderEvent.getOrderId());
+    logger.info("handle method started with CreateOrderEvent in Saga for orderId : {}"+ createOrderEvent.getOrderId());
         GetUserPaymentDetailsQuery getUserPaymentDetailsQuery =
                 new GetUserPaymentDetailsQuery(createOrderEvent.getUserId());
         User user = null;
@@ -46,6 +44,7 @@ public class OrderProcessingSaga {
 
         try {
             //calling the queryGateway to get User and payment details
+            logger.info("Calling query gateway to get userPaymentDetails...." );
             user = queryGateway.query(getUserPaymentDetailsQuery, ResponseTypes.instanceOf(User.class))
                     .join();
         }catch (Exception exception){
@@ -57,6 +56,7 @@ public class OrderProcessingSaga {
                 .paymentId(UUID.randomUUID().toString())
                 .cardDetails(user.getCardDetails()).build();
         //Now sending this command CommandGateway
+        logger.info("Sending command to commandGateway to validate payment Command ...." );
         commandGateway.sendAndWait(validatePaymentCommand);
     }
     //@StartSaga
@@ -65,8 +65,8 @@ public class OrderProcessingSaga {
         logger.info("PaymentProcessedEvent in Saga for orderId : {}"+
                 paymentProcessedEvent.getOrderId());
         try {
-            if(true)
-                throw new Exception();
+            /*if(true)
+                throw new Exception();*/
 
             ShipmentOrderCommand shipmentOrderCommand = ShipmentOrderCommand
                     .builder()

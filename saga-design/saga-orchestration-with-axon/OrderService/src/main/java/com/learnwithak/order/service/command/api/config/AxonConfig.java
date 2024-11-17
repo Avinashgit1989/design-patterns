@@ -14,15 +14,8 @@ public class AxonConfig {
     @Primary
     public XStreamSerializer xStreamSerializer() {
         XStream xStream = new XStream();
-
-        xStream.addPermission(AnyTypePermission.ANY);  // Enables all classes, use with caution
-
-
-        // Allow specific classes, including GetUserPaymentDetailsQuery
-        xStream.allowTypes(new Class[]{GetUserPaymentDetailsQuery.class});
-
-        return XStreamSerializer.builder()
-                .xStream(xStream)
-                .build();
+        xStream.addPermission(AnyTypePermission.ANY);  // Enable all permissions, but refine as needed
+        xStream.allowTypes(new Class[]{GetUserPaymentDetailsQuery.class });
+        return XStreamSerializer.builder().xStream(xStream).build();
     }
 }

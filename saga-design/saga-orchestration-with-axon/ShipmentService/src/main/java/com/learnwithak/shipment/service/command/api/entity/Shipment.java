@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+
+
 @Data
 @Entity
 @Table(name = "shipment")
@@ -16,6 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Shipment {
     @Id
+   // @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String shipmentId;
     private String orderId;
     private String shipmentStatus;
