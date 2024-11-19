@@ -4,3 +4,8 @@ server:
 spring:
   application:
     name: UserService
+
+  #Configuration for color full logs
+  output:
+    ansi:
+      enabled: ALWAYS

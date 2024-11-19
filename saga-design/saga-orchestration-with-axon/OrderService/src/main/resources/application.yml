@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: OrderService
+  #Configuration for color full logs
+  output:
+    ansi:
+      enabled: ALWAYS
+
     #JDBC DataBase Configuration
   datasource:
     url: jdbc:h2:file:~/data/orderDataBase;RECOVER=TRUE
