@@ -1,6 +1,5 @@
 package com.learnwithak.productservice.query.api.controller;
 
-import com.learnwithak.productservice.command.api.aggregate.ProductAggregate;
 import com.learnwithak.productservice.command.api.model.ProductRestModel;
 import com.learnwithak.productservice.query.api.queries.GetProductsQuery;
 import org.axonframework.messaging.responsetypes.ResponseTypes;

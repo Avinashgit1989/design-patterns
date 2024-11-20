@@ -3,10 +3,8 @@ package com.learnwithak.orderservice.command.api.saga;
 import com.learningwithak.commonservice.commands.*;
 import com.learningwithak.commonservice.events.*;
 import com.learningwithak.commonservice.model.User;
-import com.learningwithak.commonservice.queries.GetUserPaymentDetailsQuery;
-import com.learnwithak.orderservice.command.api.aggregate.OrderAggregate;
+import com.learningwithak.commonservice.queries.GetUserDetailsByIdQuery;
 import com.learnwithak.orderservice.command.api.events.OrderCreatedEvent;
-import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.modelling.saga.EndSaga;
@@ -39,14 +37,14 @@ public class OrderProcessingSaga {
         LOGGER.info("OrderCreatedEvent in Saga for Order Id : {}",
                 event.getOrderId());
 
-        GetUserPaymentDetailsQuery getUserPaymentDetailsQuery
-                = new GetUserPaymentDetailsQuery(event.getUserId());
+        GetUserDetailsByIdQuery getUserDetailsQuery
+                = new GetUserDetailsByIdQuery(event.getUserId());
 
         User user = null;
 
         try {
             user = queryGateway.query(
-                    getUserPaymentDetailsQuery,
+                    getUserDetailsQuery,
                     ResponseTypes.instanceOf(User.class)
             ).join();
 
